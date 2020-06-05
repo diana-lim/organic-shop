@@ -4,6 +4,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,9 @@ import { AuthGuard as AuthGuard } from './auth-guard.service';
 import { UserService } from './user.service';
 import { AdminAuthGuard as AdminAuthGuard } from './admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './category.service';
+import { from } from 'rxjs';
+import { ProductService } from './product.service';
 
 @NgModule({
   declarations: [
@@ -63,13 +67,16 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
       {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard,AdminAuthGuard]},
 
     ],{useHash:true}),
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [
     AuthService,
     AuthGuard,
     UserService,
-    AdminAuthGuard
+    AdminAuthGuard,
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
